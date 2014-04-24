@@ -121,7 +121,6 @@ my $LIBDIRS = join(' ', map {  "-L$_" }
 
 my $LIBS = join(' ', map { "-l$_" }
 		qw/ cpgplot pgplot /,
-		map { split( ',', $_ ) } @Arg{qw/ XLIB EXLIB /}
 	       );
 
 my $IDIRS = join( ' ', map { "-I$_" } split( ',', $Arg{IDIR} ) );
@@ -203,7 +202,7 @@ if ( $is_vms ) {
 	'pgplot_tmp/libpgplot.a'
 	if -d 'pgplot_tmp';
 
-    $items{LIBS} = [ join( ' ', $LIBDIRS, $LIBS, ExtUtils::F77->runtime ) ];
+    $items{LIBS} = [ join( ' ', $LIBDIRS, $LIBS ) ];
 
     # This is not ideal since it assumes that:
     #    objc is required
